@@ -23,4 +23,3 @@ class BasketTest {
         assertTrue(itemsInTheBasket.contains(Item.builder().type(ItemType.D).count(1).build()));
     }
 }
-
