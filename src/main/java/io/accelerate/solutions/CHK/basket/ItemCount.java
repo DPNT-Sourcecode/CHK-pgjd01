@@ -11,20 +11,24 @@ import java.util.Map;
 @Builder
 @ToString
 @EqualsAndHashCode
-public class Item {
+public class ItemCount {
 
     ItemType type;
     int count;
 
-    public static final Item INVALID = Item.builder()
+    public static final ItemCount INVALID = ItemCount.builder()
             .type(ItemType.INVALID)
             .count(1)
             .build();
 
-    public static Item buildItemFromCountedChar(Map.Entry<Character, Long> countedItems) {
-        return Item.builder()
+    public static ItemCount buildItemFromCountedChar(Map.Entry<Character, Long> countedItems) {
+        return ItemCount.builder()
                 .type(ItemType.valueOf(String.valueOf(countedItems.getKey())))
                 .count((int) (long) countedItems.getValue())
                 .build();
+    }
+
+    public static ItemCount of(ItemType itemType, int count) {
+        return new ItemCount(itemType, count);
     }
 }

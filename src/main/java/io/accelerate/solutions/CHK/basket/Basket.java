@@ -11,20 +11,20 @@ import java.util.stream.Collectors;
 @Getter
 @AllArgsConstructor(access = AccessLevel.PRIVATE)
 public class Basket {
-    private List<Item> items;
+    private List<ItemCount> itemCounts;
 
     public static Basket fromInput(String input) {
-        List<Item> items;
+        List<ItemCount> itemCounts;
         try {
-            items = input.chars()
+            itemCounts = input.chars()
                     .mapToObj(value -> (char) value)
                     .collect(Collectors.groupingBy(Function.identity(), Collectors.counting()))
                     .entrySet().stream()
-                    .map(Item::buildItemFromCountedChar)
+                    .map(ItemCount::buildItemFromCountedChar)
                     .toList();
         } catch (IllegalArgumentException e) {
-            items = List.of(Item.INVALID);
+            itemCounts = List.of(ItemCount.INVALID);
         }
-        return new Basket(items);
+        return new Basket(itemCounts);
     }
 }

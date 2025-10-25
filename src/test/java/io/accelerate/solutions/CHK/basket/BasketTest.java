@@ -14,12 +14,12 @@ class BasketTest {
     public void shouldComputeBasketFromInput() {
         basket = Basket.fromInput("AAAADBBBCC");
 
-        List<Item> itemsInTheBasket = basket.getItems();
+        List<ItemCount> itemsInTheBasket = basket.getItemCounts();
         assertNotNull(itemsInTheBasket);
         assertEquals(itemsInTheBasket.size(), 4);
-        assertTrue(itemsInTheBasket.contains(Item.builder().type(ItemType.A).count(4).build()));
-        assertTrue(itemsInTheBasket.contains(Item.builder().type(ItemType.B).count(3).build()));
-        assertTrue(itemsInTheBasket.contains(Item.builder().type(ItemType.C).count(2).build()));
-        assertTrue(itemsInTheBasket.contains(Item.builder().type(ItemType.D).count(1).build()));
+        assertTrue(itemsInTheBasket.contains(ItemCount.builder().type(ItemType.A).count(4).build()));
+        assertTrue(itemsInTheBasket.contains(ItemCount.builder().type(ItemType.B).count(3).build()));
+        assertTrue(itemsInTheBasket.contains(ItemCount.builder().type(ItemType.C).count(2).build()));
+        assertTrue(itemsInTheBasket.contains(ItemCount.builder().type(ItemType.D).count(1).build()));
     }
 }

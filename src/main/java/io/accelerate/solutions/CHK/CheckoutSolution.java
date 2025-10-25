@@ -1,10 +1,22 @@
 package io.accelerate.solutions.CHK;
 
-import io.accelerate.runner.SolutionNotImplementedException;
 import io.accelerate.solutions.CHK.basket.Basket;
+import io.accelerate.solutions.CHK.checkout.TotalPriceCalculator;
+import lombok.AccessLevel;
+import lombok.Getter;
 
 public class CheckoutSolution {
+
+    @Getter(AccessLevel.PACKAGE)
+    private final TotalPriceCalculator calculator;
+
+    public CheckoutSolution() {
+        this.calculator = new TotalPriceCalculator();
+    }
+
     public Integer checkout(String skus) {
-        return 0;
+        Basket basket = Basket.fromInput(skus);
+
+        return calculator.computeTotalPrice(basket);
     }
 }

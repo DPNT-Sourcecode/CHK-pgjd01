@@ -7,15 +7,15 @@ import java.util.Map;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-class ItemTest {
+class ItemCountTest {
 
     @Test
     public void shouldBuildFromMapEntry() {
         Map.Entry<Character, Long> charactersCounted = new AbstractMap.SimpleEntry<Character, Long>('B', 4L);
 
-        Item item = Item.buildItemFromCountedChar(charactersCounted);
+        ItemCount itemCount = ItemCount.buildItemFromCountedChar(charactersCounted);
 
-        assertEquals(item.getType(), ItemType.B);
-        assertEquals(item.getCount(), 4);
+        assertEquals(itemCount.getType(), ItemType.B);
+        assertEquals(itemCount.getCount(), 4);
     }
 }
