@@ -2,8 +2,9 @@ package io.accelerate.solutions.CHK.basket;
 
 import org.junit.jupiter.api.Test;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertNotNull;
+import java.util.List;
+
+import static org.junit.jupiter.api.Assertions.*;
 
 class BasketTest {
 
@@ -13,7 +14,12 @@ class BasketTest {
     public void shouldComputeBasketFromInput() {
         basket = Basket.fromInput("4A, 3B, 2C, 1D");
 
-        assertNotNull(basket.getItems());
-        assertEquals(basket.getItems().size(), 4);
+        List<Item> itemsInTheBasket = basket.getItems();
+        assertNotNull(itemsInTheBasket);
+        assertEquals(itemsInTheBasket.size(), 4);
+        assertTrue(itemsInTheBasket.contains(Item.builder().type(ItemType.A).count(4).build()));
+        assertTrue(itemsInTheBasket.contains(Item.builder().type(ItemType.B).count(3).build()));
+        assertTrue(itemsInTheBasket.contains(Item.builder().type(ItemType.C).count(2).build()));
+        assertTrue(itemsInTheBasket.contains(Item.builder().type(ItemType.D).count(1).build()));
     }
 }
