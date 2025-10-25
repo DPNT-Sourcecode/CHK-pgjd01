@@ -16,10 +16,8 @@ public class Basket {
     public static Basket fromInput(String input) {
         List <Item> items;
         try {
-            items = Arrays.stream(input.split(","))
-                    .map(String::trim)
-                    .map(Item::fromInput)
-                    .collect(Collectors.toList());
+            items = input.chars()
+                    .
         } catch (IllegalArgumentException e) {
             items = List.of(Item.INVALID);
         }
@@ -32,4 +30,5 @@ public class Basket {
                 .sum();
     }
 }
+
 
