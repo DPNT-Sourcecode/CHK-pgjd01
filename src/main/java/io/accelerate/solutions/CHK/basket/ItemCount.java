@@ -31,4 +31,8 @@ public class ItemCount {
     public static ItemCount of(ItemType itemType, int count) {
         return new ItemCount(itemType, count);
     }
+
+    public int computeBasePrice() {
+        return type.getBasePrice() * count;
+    }
 }

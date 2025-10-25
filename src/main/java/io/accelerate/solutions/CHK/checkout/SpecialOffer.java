@@ -7,6 +7,7 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 
 import java.util.List;
+import java.util.Map;
 
 @Getter
 @AllArgsConstructor(access = AccessLevel.PRIVATE)
@@ -15,7 +16,7 @@ public class SpecialOffer {
     private ItemCount target;
     private SpecialOfferPrice specialOfferPrice;
 
-    public static SpecialOffer of(ItemType itemType, int count, int totalPrice) {
+    public static SpecialOffer of(ItemType itemType, Map<Integer, Integer> offerMap) {
         ItemCount itemCount = ItemCount.of(itemType, count);
         return new SpecialOffer(
                 itemCount,
