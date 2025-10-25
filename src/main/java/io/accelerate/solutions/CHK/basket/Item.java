@@ -19,7 +19,7 @@ public class Item {
 
     public static Item fromInput(String input) {
         Matcher matcher = PATTERN.matcher(input);
-        if (matcher.find() && matcher.groupCount() == 3) {
+        if (matcher.find() && matcher.groupCount() == 2) {
             return Item.builder()
                     .count(Integer.parseInt(matcher.group(1)))
                     .type(ItemType.valueOf(matcher.group(2)))
@@ -38,4 +38,5 @@ public class Item {
 
     }
 }
+
 
