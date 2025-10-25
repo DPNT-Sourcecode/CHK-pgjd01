@@ -3,23 +3,20 @@ package io.accelerate.solutions.CHK.basket;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertThrows;
 
 class ItemTest {
 
     @Test
-    public void shouldCreateItem() {
-        Item validItem = Item.fromInput("2C");
+    public void shouldComputeTotal() {
+        Item item = Item.builder().count(2).type(ItemType.A).build();
 
-        assertEquals(ItemType.C, validItem.getType());
-        assertEquals(2, validItem.getCount());
+        assertEquals(100, item.computeTotalPrice());
     }
 
     @Test
-    public void shouldThrowExceptionWhenInvalid() {
-        assertThrows(
-                IllegalArgumentException.class,
-                () ->Item.fromInput("invalid2")
-        );
+    public void shouldComputeTotalPriceWithSpecialOffer() {
+        Item item = Item.builder().count(4).type(ItemType.A).build();
+
+        assertEquals(180, item.computeTotalPrice());
     }
 }
