@@ -40,5 +40,7 @@ public class TotalPriceCalculator {
 //        }
 //        int priceWithoutSpecialOffer = numberOfItemsOutsideSpecialOffer * type.getBasePrice();
 //        return priceWithoutSpecialOffer + priceWithSpecialOfferApplied;
+        return 0;
     }
 }
+
