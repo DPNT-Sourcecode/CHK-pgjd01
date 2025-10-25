@@ -21,6 +21,12 @@ public class Basket {
                 .collect(Collectors.toList());
         return new Basket(items);
     }
+
+    public int computeTotalPrice() {
+        return items.stream()
+                .mapToInt(item -> item.getCount() * item.getType().getBasePrice())
+                .sum();
+    }
 }
 
 

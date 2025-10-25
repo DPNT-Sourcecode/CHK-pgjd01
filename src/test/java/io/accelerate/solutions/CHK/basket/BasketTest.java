@@ -22,4 +22,13 @@ class BasketTest {
         assertTrue(itemsInTheBasket.contains(Item.builder().type(ItemType.C).count(2).build()));
         assertTrue(itemsInTheBasket.contains(Item.builder().type(ItemType.D).count(1).build()));
     }
+
+    @Test
+    public void shouldCalculatePriceOfBasket() {
+        Basket basket = Basket.fromInput("2A");
+
+        int totalPrice = basket.computeTotalPrice();
+
+        assertEquals(100, totalPrice);
+    }
 }
