@@ -8,4 +8,3 @@ public class CheckoutSolution {
         return Basket.fromInput(skus).computeTotalPrice();
     }
 }
-
