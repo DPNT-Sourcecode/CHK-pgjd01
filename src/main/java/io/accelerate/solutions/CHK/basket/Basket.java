@@ -17,17 +17,21 @@ public class Basket {
     private List<Item> items;
 
     public static Basket fromInput(String input) {
-//        try {
-//            Map<Character, Long> itemsGrouped = input.chars()
-//                    .mapToObj(value -> (char) value)
-//                    .collect(Collectors.groupingBy(Function.identity(), Collectors.counting()))
-//                    .forEach((character, count) -> {
-//                        items.add(Item.builder().count(count).build());
-//                    });
-//        } catch (IllegalArgumentException e) {
-//            items = List.of(Item.INVALID);
-//        }
-//        return new Basket(items);
+        try {
+            Map<Character, Long> itemsGrouped = input.chars()
+                    .mapToObj(value -> (char) value)
+                    .collect(Collectors.groupingBy(Function.identity(), Collectors.counting()))
+                    .entrySet().stream()
+                    .map(countedItems -> Item.builder()
+                                    .type(ItemType.valueOf(String.valueOf(countedItems.getKey())))
+                            .count((countedItems.getValue())
+                                    .build()
+
+                            countedItems.getKey());
+        } catch (IllegalArgumentException e) {
+            items = List.of(Item.INVALID);
+        }
+        return new Basket(items);
         return null;
     }
 
@@ -37,3 +41,4 @@ public class Basket {
                 .sum();
     }
 }
+

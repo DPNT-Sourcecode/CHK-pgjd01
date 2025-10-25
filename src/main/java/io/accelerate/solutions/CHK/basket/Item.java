@@ -14,6 +14,7 @@ public class Item {
 
     ItemType type;
     int count;
+
     public static final Item INVALID = Item.builder()
             .type(ItemType.INVALID)
             .count(1)
@@ -46,3 +47,4 @@ public class Item {
         return priceWithoutSpecialOffer + priceWithSpecialOfferApplied;
     }
 }
+
