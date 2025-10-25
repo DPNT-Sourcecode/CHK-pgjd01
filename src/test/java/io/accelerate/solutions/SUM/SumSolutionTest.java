@@ -19,11 +19,17 @@ public class SumSolutionTest {
     @Test
     public void compute_sum() {
         assertThat(sum.compute(1, 1), equalTo(2));
+        assertThat(sum.compute(25, 75), equalTo(100));
     }
 
     @Test
     public void shouldThrowIllegalArgumentExceptionWhenArgOutOfBounds() {
-        assertThrows()
+        assertThrows(
+                IllegalArgumentException.class,
+                () -> sum.compute(50, 101),
+                "Arguments must be between 0 and 100"
+        );
     }
 }
+
 
