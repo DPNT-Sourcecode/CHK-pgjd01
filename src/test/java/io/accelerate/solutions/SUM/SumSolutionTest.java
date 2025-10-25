@@ -2,6 +2,8 @@ package io.accelerate.solutions.SUM;
 
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.ValueSource;
 
 
 import static org.hamcrest.MatcherAssert.assertThat;
@@ -22,14 +24,21 @@ public class SumSolutionTest {
         assertThat(sum.compute(25, 75), equalTo(100));
     }
 
-    @Test
-    public void shouldThrowIllegalArgumentExceptionWhenArgOutOfBounds() {
+    @ParameterizedTest
+    @ValueSource(ints = {-1, 101})
+    public void shouldThrowIllegalArgumentExceptionWhenArgOutOfBounds(int outOfBoundsArg) {
         assertThrows(
                 IllegalArgumentException.class,
-                () -> sum.compute(50, 101),
+                () -> sum.compute(50, outOfBoundsArg),
+                "Arguments must be between 0 and 100"
+        );
+        assertThrows(
+                IllegalArgumentException.class,
+                () -> sum.compute(outOfBoundsArg, 50),
                 "Arguments must be between 0 and 100"
         );
     }
 }
+
 
 
