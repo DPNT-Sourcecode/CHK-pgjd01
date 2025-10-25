@@ -5,6 +5,6 @@ import io.accelerate.solutions.CHK.basket.Basket;
 
 public class CheckoutSolution {
     public Integer checkout(String skus) {
-        return Basket.fromInput(skus).computeTotalPrice();
+        return 0;
     }
 }

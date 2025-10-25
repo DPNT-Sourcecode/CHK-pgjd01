@@ -15,7 +15,7 @@ public class SpecialOffer {
     private List<Item> specialPrices;
 
     public static SpecialOffer of(int itemCount, int totalPrice) {
-        return new SpecialOffer(itemCount, totalPrice);
+        return null;
     }
 
 }
