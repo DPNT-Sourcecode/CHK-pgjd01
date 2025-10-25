@@ -14,10 +14,15 @@ public class Basket {
     private List<Item> items;
 
     public static Basket fromInput(String input) {
-        List <Item> items = Arrays.stream(input.split(","))
-                .map(String::trim)
-                .map(Item::fromInput)
-                .collect(Collectors.toList());
+        List <Item> items;
+        try {
+            items = Arrays.stream(input.split(","))
+                    .map(String::trim)
+                    .map(Item::fromInput)
+                    .collect(Collectors.toList());
+        } catch (IllegalArgumentException e) {
+            items = List.of(Item.INVALID);
+        }
         return new Basket(items);
     }
 

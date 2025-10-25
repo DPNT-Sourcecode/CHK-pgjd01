@@ -40,4 +40,13 @@ class BasketTest {
 
         assertEquals(180, totalPrice);
     }
+
+    @Test
+    public void shouldReturnMinus1IfAnyItemInvalid() {
+        Basket basket = Basket.fromInput("4A,invalid");
+
+        int totalPrice = basket.computeTotalPrice();
+
+        assertEquals(-1, totalPrice);
+    }
 }

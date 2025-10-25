@@ -11,8 +11,13 @@ import java.util.regex.Pattern;
 @Builder
 @EqualsAndHashCode
 public class Item {
+
     ItemType type;
     int count;
+    public static final Item INVALID = Item.builder()
+            .type(ItemType.INVALID)
+            .count(1)
+            .build();
 
     private static String REGEX = "(\\d+)([a-zA-Z]+)";
     private static final Pattern PATTERN = Pattern.compile(REGEX);

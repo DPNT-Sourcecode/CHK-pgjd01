@@ -11,7 +11,8 @@ public enum ItemType {
     A(50, SpecialOffer.of(3, 130)),
     B(30, SpecialOffer.of(2, 45)),
     C(20, null),
-    D(15, null);
+    D(15, null),
+    INVALID(-1, null);
 
     private final int basePrice;
     private final SpecialOffer specialOffer;
