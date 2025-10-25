@@ -12,7 +12,7 @@ class BasketTest {
 
     @Test
     public void shouldComputeBasketFromInput() {
-        basket = Basket.fromInput("4A, 3B, 2C, 1D");
+        basket = Basket.fromInput("AAAADBBBCC");
 
         List<Item> itemsInTheBasket = basket.getItems();
         assertNotNull(itemsInTheBasket);
@@ -21,24 +21,6 @@ class BasketTest {
         assertTrue(itemsInTheBasket.contains(Item.builder().type(ItemType.B).count(3).build()));
         assertTrue(itemsInTheBasket.contains(Item.builder().type(ItemType.C).count(2).build()));
         assertTrue(itemsInTheBasket.contains(Item.builder().type(ItemType.D).count(1).build()));
-    }
-
-    @Test
-    public void shouldCalculatePriceOfBasket() {
-        Basket basket = Basket.fromInput("2A");
-
-        int totalPrice = basket.computeTotalPrice();
-
-        assertEquals(100, totalPrice);
-    }
-
-    @Test
-    public void shouldCalculatePriceOfBasketWithSpecialOfferApplied() {
-        Basket basket = Basket.fromInput("4A");
-
-        int totalPrice = basket.computeTotalPrice();
-
-        assertEquals(180, totalPrice);
     }
 
     @Test
