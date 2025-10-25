@@ -8,12 +8,11 @@ import lombok.Getter;
 @Getter
 public enum ItemType {
 
-    A(50, SpecialOffer.of(3, 130)),
-    B(30, SpecialOffer.of(2, 45)),
-    C(20, null),
-    D(15, null),
-    INVALID(-1, null);
+    A(50),
+    B(30),
+    C(20),
+    D(15),
+    INVALID(-1);
 
     private final int basePrice;
-    private final SpecialOffer specialOffer;
 }

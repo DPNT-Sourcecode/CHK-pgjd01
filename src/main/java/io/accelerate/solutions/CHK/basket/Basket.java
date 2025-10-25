@@ -27,14 +27,6 @@ public class Basket {
         }
         return new Basket(items);
     }
-
-    public int computeTotalPrice() {
-        return items.stream()
-                .peek(System.out::println)
-                .mapToInt(Item::computeTotalPrice)
-                .peek(System.out::println)
-                .sum();
-    }
 }
 
 
