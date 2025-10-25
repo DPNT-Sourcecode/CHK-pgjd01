@@ -26,19 +26,21 @@ public class SumSolutionTest {
 
     @ParameterizedTest
     @ValueSource(ints = {-1, 101})
-    public void shouldThrowIllegalArgumentExceptionWhenArgOutOfBounds(int outOfBoundsArg) {
-        assertThrows(
-                IllegalArgumentException.class,
-                () -> sum.compute(50, outOfBoundsArg),
-                "Arguments must be between 0 and 100"
-        );
+    public void shouldThrowIllegalArgumentExceptionWhenXArgOutOfBounds(int outOfBoundsArg) {
         assertThrows(
                 IllegalArgumentException.class,
                 () -> sum.compute(outOfBoundsArg, 50),
                 "Arguments must be between 0 and 100"
         );
     }
+
+    @ParameterizedTest
+    @ValueSource(ints = {-1, 101})
+    public void shouldThrowIllegalArgumentExceptionWhenYArgOutOfBounds(int outOfBoundsArg) {
+        assertThrows(
+                IllegalArgumentException.class,
+                () -> sum.compute(50, outOfBoundsArg),
+                "Arguments must be between 0 and 100"
+        );
+    }
 }
-
-
-
