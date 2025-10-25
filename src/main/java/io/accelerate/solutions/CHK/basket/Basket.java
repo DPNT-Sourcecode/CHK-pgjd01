@@ -12,8 +12,9 @@ public class Basket {
     private List<Item> items;
 
     public static Basket fromInput(String input) {
-        return new Basket(null);
+        return new Basket(List.of());
     }
 
 
 }
+
