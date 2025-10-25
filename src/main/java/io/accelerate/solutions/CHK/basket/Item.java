@@ -35,12 +35,15 @@ public class Item {
     }
 
     public int computeTotalPrice() {
-        int numberOfBundlesWithinSpecialOffer = count / type.getSpecialOffer().getItemCount();
-        int numberOfItemsOutsideSpecialOffer = count % type.getSpecialOffer().getItemCount();
-        int priceWithSpecialOfferApplied = numberOfBundlesWithinSpecialOffer * type.getSpecialOffer().getTotalPrice();
+        int numberOfItemsOutsideSpecialOffer = count;
+        int priceWithSpecialOfferApplied = 0;
+        if (type.getSpecialOffer() != null) {
+            int numberOfBundlesWithinSpecialOffer = count / type.getSpecialOffer().getItemCount();
+            numberOfItemsOutsideSpecialOffer = count % type.getSpecialOffer().getItemCount();
+            priceWithSpecialOfferApplied = numberOfBundlesWithinSpecialOffer * type.getSpecialOffer().getTotalPrice();
+        }
         int priceWithoutSpecialOffer = numberOfItemsOutsideSpecialOffer * type.getBasePrice();
         return priceWithoutSpecialOffer + priceWithSpecialOfferApplied;
-
     }
 }
 
