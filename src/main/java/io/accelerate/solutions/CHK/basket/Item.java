@@ -19,7 +19,7 @@ public class Item {
 
     public static Item fromInput(String input) {
         Matcher matcher = PATTERN.matcher(input);
-        if (matcher.find()) {
+        if (matcher.find() && matcher.groupCount() == 3) {
             return Item.builder()
                     .count(Integer.parseInt(matcher.group(1)))
                     .type(ItemType.valueOf(matcher.group(2)))
@@ -28,4 +28,14 @@ public class Item {
             throw new IllegalArgumentException("Invalid item");
         }
     }
+
+    public int computeTotalPrice() {
+        int numberOfBundlesWithinSpecialOffer = count / type.getSpecialOffer().getItemCount();
+        int numberOfItemsOutsideSpecialOffer = count % type.getSpecialOffer().getItemCount();
+        int priceWithSpecialOfferApplied = numberOfBundlesWithinSpecialOffer * type.getSpecialOffer().getTotalPrice();
+        int priceWithoutSpecialOffer = numberOfItemsOutsideSpecialOffer * type.getBasePrice();
+        return priceWithoutSpecialOffer + priceWithSpecialOfferApplied;
+
+    }
 }
+

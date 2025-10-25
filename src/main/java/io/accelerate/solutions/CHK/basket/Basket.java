@@ -23,7 +23,8 @@ public class Basket {
 
     public int computeTotalPrice() {
         return items.stream()
-                .mapToInt(item -> item.getCount() * item.getType().getBasePrice())
+                .mapToInt(item -> item.computeTotalPrice())
                 .sum();
     }
 }
+
