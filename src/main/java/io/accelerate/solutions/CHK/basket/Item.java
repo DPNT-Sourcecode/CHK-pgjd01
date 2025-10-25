@@ -19,10 +19,15 @@ public class Item {
 
     public static Item fromInput(String input) {
         Matcher matcher = PATTERN.matcher(input);
-        return Item.builder()
-                .count(Integer.parseInt(matcher.group(1)))
-                .type(ItemType.valueOf(matcher.group(2)))
-                .build();
+        if (matcher.find()) {
+            return Item.builder()
+                    .count(Integer.parseInt(matcher.group(1)))
+                    .type(ItemType.valueOf(matcher.group(2)))
+                    .build();
+        } else {
+            throw new IllegalArgumentException("Invalid item");
+        }
     }
 }
+
 
