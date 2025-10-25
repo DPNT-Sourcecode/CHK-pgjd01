@@ -31,4 +31,13 @@ class BasketTest {
 
         assertEquals(100, totalPrice);
     }
+
+    @Test
+    public void shouldCalculatePriceOfBasketWithSpecialOfferApplied() {
+        Basket basket = Basket.fromInput("4A");
+
+        int totalPrice = basket.computeTotalPrice();
+
+        assertEquals(180, totalPrice);
+    }
 }

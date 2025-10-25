@@ -15,7 +15,6 @@ public class Basket {
 
     public static Basket fromInput(String input) {
         List <Item> items = Arrays.stream(input.split(","))
-                .peek(System.out::println)
                 .map(String::trim)
                 .map(Item::fromInput)
                 .collect(Collectors.toList());
@@ -28,5 +27,3 @@ public class Basket {
                 .sum();
     }
 }
-
-
