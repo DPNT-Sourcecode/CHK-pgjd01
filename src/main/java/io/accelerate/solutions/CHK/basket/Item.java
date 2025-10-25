@@ -3,11 +3,13 @@ package io.accelerate.solutions.CHK.basket;
 import lombok.Builder;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
+import lombok.ToString;
 
 import java.util.Map;
 
 @Getter
 @Builder
+@ToString
 @EqualsAndHashCode
 public class Item {
 
@@ -38,3 +40,4 @@ public class Item {
         return priceWithoutSpecialOffer + priceWithSpecialOfferApplied;
     }
 }
+

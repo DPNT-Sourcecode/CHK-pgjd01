@@ -24,11 +24,19 @@ class BasketTest {
     }
 
     @Test
+    public void shouldComputeTotalPrice() {
+        basket = Basket.fromInput("AAAADBBBCC");
+
+        assertEquals(310, basket.computeTotalPrice());
+    }
+
+    @Test
     public void shouldReturnMinus1IfAnyItemInvalid() {
-        Basket basket = Basket.fromInput("4A,invalid");
+        Basket basket = Basket.fromInput("4Ainvalid");
 
         int totalPrice = basket.computeTotalPrice();
 
         assertEquals(-1, totalPrice);
     }
 }
+

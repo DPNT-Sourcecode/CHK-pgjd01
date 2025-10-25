@@ -30,8 +30,11 @@ public class Basket {
 
     public int computeTotalPrice() {
         return items.stream()
+                .peek(System.out::println)
                 .mapToInt(Item::computeTotalPrice)
+                .peek(System.out::println)
                 .sum();
     }
 }
+
 
