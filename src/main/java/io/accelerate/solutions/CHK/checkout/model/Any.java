@@ -19,4 +19,3 @@ public class Any {
         return new Any(Arrays.stream(types).collect(Collectors.toSet()));
     }
 }
-
