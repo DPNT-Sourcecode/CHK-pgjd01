@@ -20,8 +20,6 @@ public class SpecialOfferApplier {
                     .findFirst().map(ItemCount::getCount).orElse(0);
             int numberOfAllowedBundles = amountOfOtherProductNeededForOffer / offer.getTargetAmount();
             numberOfBundles = Math.min(numberOfAllowedBundles, numberOfBundles);
-        } else if (offer.isCrossProductPromotion()) {
-
         }
 
         totalPriceOfAppliedOffer = numberOfBundles * offer.getSpecialOfferPrice().getPrice();
@@ -33,3 +31,4 @@ public class SpecialOfferApplier {
                 .build();
     }
 }
+
