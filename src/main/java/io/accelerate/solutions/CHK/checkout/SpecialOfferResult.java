@@ -1,2 +1,5 @@
-package io.accelerate.solutions.CHK.checkout;public class SpecialOfferResult {
+package io.accelerate.solutions.CHK.checkout;
+
+public class SpecialOfferResult {
 }
+
