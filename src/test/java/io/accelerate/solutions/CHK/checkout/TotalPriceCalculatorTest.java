@@ -62,13 +62,19 @@ class TotalPriceCalculatorTest {
     @Test
     public void shouldCalculateTotalPriceWithApplicableCrossProductPromotions() {
         SpecialOfferResult resultFromApply = SpecialOfferResult.builder()
-                .totalPriceOfBundle(0)
-                .itemsOfferWasAppliedTo(List.of(ItemCount.of(ItemType.B, 2)))
+                .totalPriceOfBundle(45)
+                .itemsOfferWasAppliedTo(List.of(
+                        ItemCount.of(ItemType.S, 1),
+                        ItemCount.of(ItemType.T, 1),
+                        ItemCount.of(ItemType.X, 1),
+                        ItemCount.of(ItemType.Y, 1),
+                        ItemCount.of(ItemType.Z, 1)
+                ))
                 .build();
-        when(specialOfferApplier.apply(eq(ItemType.B), eq(2), any(SpecialOffer.class), anyList())).thenReturn(resultFromApply);
+        when(specialOfferApplier.apply(eq(ItemType.X), eq(1), any(SpecialOffer.class), anyList())).thenReturn(resultFromApply);
 
-        int totalPrice = totalPriceCalculator.computeTotalPrice(Basket.fromInput("BBEE"));
+        int totalPrice = totalPriceCalculator.computeTotalPrice(Basket.fromInput("STXYZ"));
 
-        assertEquals(80, totalPrice, "B items should be free");
+        assertEquals(45, totalPrice, "Bundle of 5 products should cost 45");
     }
 }

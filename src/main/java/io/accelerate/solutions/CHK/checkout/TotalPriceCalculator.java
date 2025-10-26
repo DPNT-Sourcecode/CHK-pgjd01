@@ -3,6 +3,7 @@ package io.accelerate.solutions.CHK.checkout;
 import io.accelerate.solutions.CHK.basket.model.Basket;
 import io.accelerate.solutions.CHK.basket.model.ItemCount;
 import io.accelerate.solutions.CHK.basket.model.ItemType;
+import io.accelerate.solutions.CHK.checkout.model.Any;
 import io.accelerate.solutions.CHK.checkout.model.SpecialOffer;
 import io.accelerate.solutions.CHK.checkout.model.SpecialOfferPrice;
 import io.accelerate.solutions.CHK.checkout.model.SpecialOfferResult;
@@ -11,6 +12,8 @@ import lombok.AllArgsConstructor;
 import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;
+
+import static io.accelerate.solutions.CHK.basket.model.ItemType.*;
 
 @AllArgsConstructor
 public class TotalPriceCalculator {
@@ -32,7 +35,8 @@ public class TotalPriceCalculator {
         SpecialOffer.ofMultiProduct(ItemType.R, 3, SpecialOfferPrice.of(ItemType.Q, 1, 0)),
         SpecialOffer.of(ItemType.U, 4, 120),
         SpecialOffer.of(ItemType.V, 2, 90),
-        SpecialOffer.of(ItemType.V, 3, 130)
+        SpecialOffer.of(ItemType.V, 3, 130),
+        SpecialOffer.ofCrossProduct(Any.of(S, T, X, Y, Z), 3, 45)
     ));
 
     static {
