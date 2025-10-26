@@ -25,7 +25,7 @@ public class SpecialOffer {
         return new SpecialOffer(ItemCount.of(itemType, count), specialOfferPrice);
     }
 
-    public static SpecialOffer ofCrossProduct(Any anyItems, int count, SpecialOfferPrice specialOfferPrice) {
+    public static SpecialOffer ofCrossProduct(Any anyItems, int count, int totalPrice) {
         return null;
     }
 
