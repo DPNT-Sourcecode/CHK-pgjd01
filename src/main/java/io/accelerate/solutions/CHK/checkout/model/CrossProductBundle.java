@@ -26,4 +26,3 @@ public class CrossProductBundle {
         return items.stream().mapToInt(ItemCount::computeBasePrice).sum();
     }
 }
-

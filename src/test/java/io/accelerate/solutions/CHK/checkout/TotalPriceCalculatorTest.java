@@ -24,6 +24,7 @@ class TotalPriceCalculatorTest {
     @BeforeEach
     void setUp() {
         specialOfferApplier = mock(SpecialOfferApplier.class);
+        crossProductOfferApplier = mock(CrossProductOfferApplier.class);
         totalPriceCalculator = new TotalPriceCalculator(specialOfferApplier, crossProductOfferApplier);
     }
 

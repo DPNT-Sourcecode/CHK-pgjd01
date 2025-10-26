@@ -40,4 +40,3 @@ public class ItemCount {
         return type.getBasePrice() * count;
     }
 }
-

@@ -24,12 +24,14 @@ public class CrossProductOfferApplier {
         List<ItemCount> itemsToWhichOfferApplied = new ArrayList<>();
         for (ItemCount applicableItem : applicableItems) {
             if (enoughItemsToApplyOffer(crossProductOffer, applicableItem, currentBundle)) {
-                //close bundle, apply price and register applicable products
+                // close bundle, apply price and register applicable products
                 totalPrice += crossProductOffer.getSpecialOfferPrice().getPrice();
+                int amountOfItemsNeededToCloseBundle = crossProductOffer.getTargetAmount() - currentBundle.getCurrentNumberOfItems();
+                currentBundle.addItem(applicableItem.getType(), amountOfItemsNeededToCloseBundle);
                 itemsToWhichOfferApplied.addAll(currentBundle.getItems());
                 currentBundle = new CrossProductBundle();
 
-                int amountOfItemsNeededToCloseBundle = crossProductOffer.getTargetAmount() - currentBundle.getCurrentNumberOfItems();
+                // put remaining items in new bundle
                 if (applicableItem.getCount() > amountOfItemsNeededToCloseBundle) {
                     currentBundle.addItem(applicableItem.subtractUnits(amountOfItemsNeededToCloseBundle));
                 }
@@ -49,6 +51,3 @@ public class CrossProductOfferApplier {
     }
 
 }
-
-
-
