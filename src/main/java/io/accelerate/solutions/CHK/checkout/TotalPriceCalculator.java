@@ -22,7 +22,17 @@ public class TotalPriceCalculator {
         SpecialOffer.of(ItemType.A, 5, 200),
         SpecialOffer.of(ItemType.B, 2, 45),
         SpecialOffer.ofMultiProduct(ItemType.E, 2, SpecialOfferPrice.of(ItemType.B, 1, 0)),
-        SpecialOffer.of(ItemType.F, 3, 20)
+        SpecialOffer.of(ItemType.F, 3, 20),
+        SpecialOffer.of(ItemType.H, 5, 45),
+        SpecialOffer.of(ItemType.H, 10, 80),
+        SpecialOffer.of(ItemType.K, 2, 150),
+        SpecialOffer.ofMultiProduct(ItemType.N, 3, SpecialOfferPrice.of(ItemType.M, 1, 0)),
+        SpecialOffer.of(ItemType.P, 5, 200),
+        SpecialOffer.of(ItemType.Q, 3, 80),
+        SpecialOffer.ofMultiProduct(ItemType.R, 3, SpecialOfferPrice.of(ItemType.Q, 1, 0)),
+        SpecialOffer.of(ItemType.U, 3, 80),
+        SpecialOffer.of(ItemType.V, 2, 90),
+        SpecialOffer.of(ItemType.V, 3, 130)
     ));
 
     static {
@@ -64,3 +74,4 @@ public class TotalPriceCalculator {
         return itemCount.getType() == offer.getItemTypeApplicableForDiscount();
     }
 }
+

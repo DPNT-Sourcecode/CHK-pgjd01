@@ -9,8 +9,8 @@ import java.util.List;
 public class SpecialOfferApplier {
 
     public SpecialOfferResult apply(int itemAmount, SpecialOffer offer, List<ItemCount> items) {
-        int amountOfItemsWithOfferApplied = 0;
-        int totalPriceOfAppliedOffer = 0;
+        int amountOfItemsWithOfferApplied;
+        int totalPriceOfAppliedOffer;
         int numberOfBundles = itemAmount / offer.getSpecialOfferPrice().getItemCount().getCount();
 
         if (offer.isMultiProductPromotion()) {
@@ -30,3 +30,4 @@ public class SpecialOfferApplier {
                 .build();
     }
 }
+
