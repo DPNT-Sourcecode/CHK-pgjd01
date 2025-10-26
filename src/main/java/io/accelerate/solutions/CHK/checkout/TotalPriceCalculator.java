@@ -59,7 +59,7 @@ public class TotalPriceCalculator {
         ItemType typeBeingProcessed = itemCount.getType();
         for (SpecialOffer offer : SPECIAL_OFFERS) {
             if (offerIsApplicableForThisItem(itemCount, offer)
-            && enoughItemsInBasketToApplyOffer(offer, itemAmount)) {
+            && enoughItemsInBasketToApplyOffer(offer, itemAmount, itemsToProcess)) {
                 SpecialOfferResult specialOfferResult = specialOfferApplier.apply(typeBeingProcessed, itemAmount, offer, itemsToProcess);
                 totalPrice += specialOfferResult.getTotalPriceOfBundle();
                 itemAmount -= specialOfferResult.getAmountAppliedTo(typeBeingProcessed);
@@ -71,9 +71,12 @@ public class TotalPriceCalculator {
         return totalPrice;
     }
 
-    private static boolean enoughItemsInBasketToApplyOffer(SpecialOffer offer, int itemAmount) {
+    private static boolean enoughItemsInBasketToApplyOffer(SpecialOffer offer, int itemAmount, List<ItemCount> itemsToProcess) {
         if (offer.isCrossProductPromotion()) {
-            return false;
+            return itemsToProcess.stream()
+                    .map(ItemCount::getType)
+                    .filter(offer.getTargetTypes()::contains)
+                    .count() > offer.getTargetAmount();
         } else {
             return itemAmount >= offer.getSpecialOfferPrice().getCount();
         }
