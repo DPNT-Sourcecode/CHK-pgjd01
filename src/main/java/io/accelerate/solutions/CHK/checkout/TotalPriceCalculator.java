@@ -67,11 +67,20 @@ public class TotalPriceCalculator {
     }
 
     private static boolean enoughItemsInBasketToApplyOffer(SpecialOffer offer, int itemAmount) {
-        return itemAmount >= offer.getSpecialOfferPrice().getItemCount().getCount();
+        if (offer.isCrossProductPromotion()) {
+            return false;
+        } else {
+            return itemAmount >= offer.getSpecialOfferPrice().getCount();
+        }
     }
 
     private static boolean offerIsApplicableForThisItem(ItemCount itemCount, SpecialOffer offer) {
-        return itemCount.getType() == offer.getItemTypesApplicableForDiscount();
+        if (offer.isCrossProductPromotion()) {
+            return false;
+        } else {
+            return offer.getItemTypesApplicableForDiscount().contains(itemCount.getType());
+        }
     }
 }
+
 

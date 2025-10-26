@@ -4,6 +4,8 @@ import io.accelerate.solutions.CHK.basket.model.ItemCount;
 import io.accelerate.solutions.CHK.basket.model.ItemType;
 import org.junit.jupiter.api.Test;
 
+import java.util.Set;
+
 import static org.junit.jupiter.api.Assertions.*;
 
 class SpecialOfferTest {
@@ -15,7 +17,7 @@ class SpecialOfferTest {
         assertEquals(1, specialOffer.getTargetTypes().size());
         assertTrue(specialOffer.getTargetTypes().contains(ItemType.B));
         assertEquals(specialOffer.getTargetAmount(), 3);
-        assertEquals(specialOffer.getItemTypesApplicableForDiscount(), ItemType.B);
+        assertEquals(specialOffer.getItemTypesApplicableForDiscount(), Set.of(ItemType.B));
         assertFalse(specialOffer.isMultiProductPromotion());
     }
 
@@ -26,7 +28,7 @@ class SpecialOfferTest {
         assertEquals(1, specialOffer.getTargetTypes().size());
         assertTrue(specialOffer.getTargetTypes().contains(ItemType.C));
         assertEquals(specialOffer.getTargetAmount(), 4);
-        assertEquals(specialOffer.getItemTypesApplicableForDiscount(), ItemType.A);
+        assertEquals(specialOffer.getItemTypesApplicableForDiscount(), Set.of(ItemType.A));
         assertTrue(specialOffer.isMultiProductPromotion());
     }
 
@@ -37,3 +39,4 @@ class SpecialOfferTest {
         assertNotNull(specialOffer);
     }
 }
+

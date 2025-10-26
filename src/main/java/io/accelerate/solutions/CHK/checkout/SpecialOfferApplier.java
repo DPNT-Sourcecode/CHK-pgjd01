@@ -11,7 +11,7 @@ public class SpecialOfferApplier {
     public SpecialOfferResult apply(int itemAmount, SpecialOffer offer, List<ItemCount> items) {
         int amountOfItemsWithOfferApplied;
         int totalPriceOfAppliedOffer;
-        int numberOfBundles = itemAmount / offer.getSpecialOfferPrice().getItemCount().getCount();
+        int numberOfBundles = itemAmount / offer.getSpecialOfferPrice().getCount();
 
         if (offer.isMultiProductPromotion()) {
             int amountOfOtherProductNeededForOffer = items.stream()
@@ -22,7 +22,7 @@ public class SpecialOfferApplier {
         }
 
         totalPriceOfAppliedOffer = numberOfBundles * offer.getSpecialOfferPrice().getPrice();
-        amountOfItemsWithOfferApplied = numberOfBundles * offer.getSpecialOfferPrice().getItemCount().getCount();
+        amountOfItemsWithOfferApplied = numberOfBundles * offer.getSpecialOfferPrice().getCount();
 
         return SpecialOfferResult.builder()
                 .amountOfItemsAppliedTo(amountOfItemsWithOfferApplied)
@@ -30,3 +30,4 @@ public class SpecialOfferApplier {
                 .build();
     }
 }
+
