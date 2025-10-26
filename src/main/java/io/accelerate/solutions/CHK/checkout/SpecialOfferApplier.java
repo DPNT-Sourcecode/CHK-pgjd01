@@ -6,8 +6,6 @@ import io.accelerate.solutions.CHK.checkout.model.SpecialOffer;
 import io.accelerate.solutions.CHK.checkout.model.SpecialOfferResult;
 
 import java.util.List;
-import java.util.Optional;
-import java.util.Set;
 
 public class SpecialOfferApplier {
 
@@ -33,6 +31,3 @@ public class SpecialOfferApplier {
                 .build();
     }
 }
-
-
-

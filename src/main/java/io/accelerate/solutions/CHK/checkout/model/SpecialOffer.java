@@ -44,4 +44,3 @@ public class SpecialOffer {
         this.isCrossProductPromotion = targetTypes.size() != 1;
     }
 }
-

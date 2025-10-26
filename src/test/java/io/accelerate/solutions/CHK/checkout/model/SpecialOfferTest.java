@@ -39,4 +39,3 @@ class SpecialOfferTest {
         assertNotNull(specialOffer);
     }
 }
-

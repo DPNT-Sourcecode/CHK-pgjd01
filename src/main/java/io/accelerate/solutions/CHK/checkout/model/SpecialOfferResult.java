@@ -19,4 +19,3 @@ public class SpecialOfferResult {
                 .stream().mapToInt(ItemCount::getCount).findAny().orElse(0);
     }
 }
-

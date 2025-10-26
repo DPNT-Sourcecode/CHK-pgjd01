@@ -72,4 +72,3 @@ class TotalPriceCalculatorTest {
         assertEquals(80, totalPrice, "B items should be free");
     }
 }
-
