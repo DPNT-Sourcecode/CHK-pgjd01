@@ -21,7 +21,7 @@ public class SpecialOffer {
         );
     }
 
-    public static SpecialOffer of(ItemType itemType, int count, SpecialOfferPrice specialOfferPrice) {
+    public static SpecialOffer ofMultiProduct(ItemType itemType, int count, SpecialOfferPrice specialOfferPrice) {
         return new SpecialOffer(ItemCount.of(itemType, count), specialOfferPrice);
     }
 
@@ -34,5 +34,3 @@ public class SpecialOffer {
     }
 
 }
-
-

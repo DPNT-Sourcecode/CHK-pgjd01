@@ -28,4 +28,15 @@ class SpecialOfferApplierTest {
         assertEquals(4, specialOfferResult.getAmountOfItemsAppliedTo());
         assertEquals(20, specialOfferResult.getTotalPriceOfBundle());
     }
+
+    @Test
+    public void shouldApplyMultiProductOffer() {
+        SpecialOffer specialOffer = SpecialOffer.ofMultiProduct(ItemType.E, 4, SpecialOfferPrice.of(ItemType.B, 2, 10));
+
+        SpecialOfferResult specialOfferResult = specialOfferApplier.apply(5, specialOffer, List.of(ItemCount.of(ItemType.E, 4)));
+
+        assertNotNull(specialOfferResult);
+        assertEquals(4, specialOfferResult.getAmountOfItemsAppliedTo());
+        assertEquals(20, specialOfferResult.getTotalPriceOfBundle());
+    }
 }

@@ -18,7 +18,7 @@ public class TotalPriceCalculator {
         SpecialOffer.of(ItemType.A, 3, 130),
         SpecialOffer.of(ItemType.A, 5, 200),
         SpecialOffer.of(ItemType.B, 2, 45),
-        SpecialOffer.of(ItemType.E, 2, SpecialOfferPrice.of(ItemType.B, 1, 0))
+        SpecialOffer.ofMultiProduct(ItemType.E, 2, SpecialOfferPrice.of(ItemType.B, 1, 0))
     ));
 
     static {
@@ -61,5 +61,3 @@ public class TotalPriceCalculator {
         return itemCount.getType() == offer.getItemTypeApplicableForDiscount();
     }
 }
-
-

@@ -9,5 +9,3 @@ public class SpecialOfferResult {
     int amountOfItemsAppliedTo;
     int totalPriceOfBundle;
 }
-
-
