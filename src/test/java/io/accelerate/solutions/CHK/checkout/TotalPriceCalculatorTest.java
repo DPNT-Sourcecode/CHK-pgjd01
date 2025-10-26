@@ -30,6 +30,9 @@ class TotalPriceCalculatorTest {
 
     @Test
     public void shouldCalculateTotalPrice() {
+        when(crossProductOfferApplier.apply(anyList(), any(SpecialOffer.class))).thenReturn(SpecialOfferResult.builder()
+                .itemsOfferWasAppliedTo(List.of()).build());
+
         int totalPrice = totalPriceCalculator.computeTotalPrice(Basket.fromInput("K"));
 
         assertEquals(70, totalPrice);
@@ -80,3 +83,4 @@ class TotalPriceCalculatorTest {
         assertEquals(45, totalPrice, "Bundle of 5 products should cost 45");
     }
 }
+
