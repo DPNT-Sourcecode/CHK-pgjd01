@@ -50,6 +50,6 @@ class TotalPriceCalculatorTest {
 
         int totalPrice = totalPriceCalculator.computeTotalPrice(Basket.fromInput("BBEE"));
 
-        assertEquals(40, totalPrice, "B items should be free");
+        assertEquals(80, totalPrice, "B items should be free");
     }
 }

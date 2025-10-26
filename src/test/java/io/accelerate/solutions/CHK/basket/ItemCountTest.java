@@ -11,7 +11,7 @@ class ItemCountTest {
 
     @Test
     public void shouldBuildFromMapEntry() {
-        Map.Entry<Character, Long> charactersCounted = new AbstractMap.SimpleEntry<Character, Long>('B', 4L);
+        Map.Entry<Character, Long> charactersCounted = new AbstractMap.SimpleEntry<>('B', 4L);
 
         ItemCount itemCount = ItemCount.buildItemFromCountedChar(charactersCounted);
 
