@@ -1,10 +1,14 @@
 package io.accelerate.solutions.CHK.checkout;
 
 import io.accelerate.solutions.CHK.basket.model.Basket;
+import io.accelerate.solutions.CHK.basket.model.ItemCount;
+import io.accelerate.solutions.CHK.basket.model.ItemType;
 import io.accelerate.solutions.CHK.checkout.model.SpecialOffer;
 import io.accelerate.solutions.CHK.checkout.model.SpecialOfferResult;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+
+import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.ArgumentMatchers.*;
@@ -33,7 +37,7 @@ class TotalPriceCalculatorTest {
     public void shouldCalculateTotalPriceWithApplicableSelfProductPromotions() {
         SpecialOfferResult resultFromApply = SpecialOfferResult.builder()
                 .totalPriceOfBundle(100)
-                .amountOfItemsAppliedTo(3)
+                .itemsOfferWasAppliedTo(List.of(ItemCount.of(ItemType.A, 3)))
                 .build();
         when(specialOfferApplier.apply(eq(4), any(SpecialOffer.class), anyList())).thenReturn(resultFromApply);
 
@@ -46,7 +50,20 @@ class TotalPriceCalculatorTest {
     public void shouldCalculateTotalPriceWithApplicableMultiProductPromotions() {
         SpecialOfferResult resultFromApply = SpecialOfferResult.builder()
                 .totalPriceOfBundle(0)
-                .amountOfItemsAppliedTo(2)
+                .itemsOfferWasAppliedTo(List.of(ItemCount.of(ItemType.B, 2)))
+                .build();
+        when(specialOfferApplier.apply(eq(2), any(SpecialOffer.class), anyList())).thenReturn(resultFromApply);
+
+        int totalPrice = totalPriceCalculator.computeTotalPrice(Basket.fromInput("BBEE"));
+
+        assertEquals(80, totalPrice, "B items should be free");
+    }
+
+    @Test
+    public void shouldCalculateTotalPriceWithApplicableCrossProductPromotions() {
+        SpecialOfferResult resultFromApply = SpecialOfferResult.builder()
+                .totalPriceOfBundle(0)
+                .itemsOfferWasAppliedTo(List.of(ItemCount.of(ItemType.B, 2)))
                 .build();
         when(specialOfferApplier.apply(eq(2), any(SpecialOffer.class), anyList())).thenReturn(resultFromApply);
 
