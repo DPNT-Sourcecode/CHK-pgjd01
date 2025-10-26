@@ -5,6 +5,7 @@ import io.accelerate.solutions.CHK.checkout.model.SpecialOffer;
 import io.accelerate.solutions.CHK.checkout.model.SpecialOfferResult;
 
 import java.util.List;
+import java.util.Set;
 
 public class SpecialOfferApplier {
 
@@ -25,9 +26,10 @@ public class SpecialOfferApplier {
         amountOfItemsWithOfferApplied = numberOfBundles * offer.getSpecialOfferPrice().getCount();
 
         return SpecialOfferResult.builder()
-                .amountOfItemsAppliedTo(amountOfItemsWithOfferApplied)
+                .itemsOfferWasAppliedTo(Set.of(ItemCount.of(offer.getamountOfItemsWithOfferApplied)))
                 .totalPriceOfBundle(totalPriceOfAppliedOffer)
                 .build();
     }
 }
+
 
