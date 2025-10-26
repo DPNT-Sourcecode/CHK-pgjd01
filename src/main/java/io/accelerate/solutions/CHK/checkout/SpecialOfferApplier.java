@@ -10,15 +10,16 @@ public class SpecialOfferApplier {
         // check for applicability of "other-products offers" comparing offer target and items list
         int amountOfItemsWithOfferApplied = 0;
         int totalPriceOfAppliedOffer = 0;
-        if (offer.isMultiProductPromotion()) {
+        int numberOfBundles = itemAmount / offer.getSpecialOfferPrice().getItemCount().getCount();
 
-        } else {
-            // if no "other-products applies" apply self-product offer
-            int numberOfBundles = itemAmount / offer.getSpecialOfferPrice().getItemCount().getCount();
-            totalPriceOfAppliedOffer = numberOfBundles * offer.getSpecialOfferPrice().getPrice();
-            amountOfItemsWithOfferApplied = numberOfBundles * offer.getSpecialOfferPrice().getItemCount().getCount();
+        if (offer.isMultiProductPromotion()) {
+            int amountOfOtherProductNeededForOffer = (int) items.stream().filter(item -> item.getType() == offer.getTarget().getType()).count();
+            int numberOfAllowedBundles = amountOfOtherProductNeededForOffer / offer.getTarget().getCount();
+            numberOfBundles = Math.min(numberOfAllowedBundles, numberOfBundles);
         }
-        // compute result
+
+        totalPriceOfAppliedOffer = numberOfBundles * offer.getSpecialOfferPrice().getPrice();
+        amountOfItemsWithOfferApplied = numberOfBundles * offer.getSpecialOfferPrice().getItemCount().getCount();
 
         return SpecialOfferResult.builder()
                 .amountOfItemsAppliedTo(amountOfItemsWithOfferApplied)
@@ -26,3 +27,4 @@ public class SpecialOfferApplier {
                 .build();
     }
 }
+
