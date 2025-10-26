@@ -41,8 +41,9 @@ public class CrossProductOfferApplier {
     }
 
     private static boolean enoughItemsToApplyOffer(SpecialOffer crossProductOffer, ItemCount applicableItem, CrossProductBundle currentBundle) {
-        return currentBundle.getCurrentNumberOfItems() + applicableItem.getCount() > crossProductOffer.getTargetAmount();
+        return currentBundle.getCurrentNumberOfItems() + applicableItem.getCount() >= crossProductOffer.getTargetAmount();
     }
 
 }
+
 
