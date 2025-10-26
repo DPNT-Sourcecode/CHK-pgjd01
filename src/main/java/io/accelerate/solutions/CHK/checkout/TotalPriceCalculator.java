@@ -43,4 +43,3 @@ public class TotalPriceCalculator {
         return 0;
     }
 }
-
