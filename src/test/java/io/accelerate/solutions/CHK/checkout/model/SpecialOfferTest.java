@@ -37,4 +37,3 @@ class SpecialOfferTest {
         assertNotNull(specialOffer);
     }
 }
-
