@@ -43,4 +43,3 @@ class SpecialOfferApplierTest {
         assertEquals(20, specialOfferResult.getTotalPriceOfBundle());
     }
 }
-
