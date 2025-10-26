@@ -24,4 +24,11 @@ class TotalPriceCalculatorTest {
 
         assertEquals(50, totalPrice);
     }
+
+    @Test
+    public void shouldCalculateTotalPriceWithApplicableSelfProductPromotions() {
+        int totalPrice = totalPriceCalculator.computeTotalPrice(Basket.fromInput("AAAA"));
+
+        assertEquals(180, totalPrice);
+    }
 }

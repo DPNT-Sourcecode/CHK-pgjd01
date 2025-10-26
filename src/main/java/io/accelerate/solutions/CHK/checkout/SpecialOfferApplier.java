@@ -7,7 +7,6 @@ import java.util.List;
 public class SpecialOfferApplier {
 
     public SpecialOfferResult apply(int itemAmount, SpecialOffer offer, List<ItemCount> items) {
-        // check for applicability of "other-products offers" comparing offer target and items list
         int amountOfItemsWithOfferApplied = 0;
         int totalPriceOfAppliedOffer = 0;
         int numberOfBundles = itemAmount / offer.getSpecialOfferPrice().getItemCount().getCount();

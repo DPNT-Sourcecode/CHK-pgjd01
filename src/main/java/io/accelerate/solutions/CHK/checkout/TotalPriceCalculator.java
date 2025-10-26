@@ -42,9 +42,8 @@ public class TotalPriceCalculator {
             if (offerIsApplicableForThisItem(itemCount, offer)
             && enoughItemsInBasketToApplyOffer(offer, itemAmount)) {
                 SpecialOfferResult specialOfferResult = specialOfferApplier.apply(itemAmount, offer, itemsToProcess);
-                //totalPrice += amountOfItemsOfferAppliedTo * offer.getPricePerDiscountedItem();
-
-                //itemAmount -= amountOfItemsOfferAppliedTo;
+                totalPrice += specialOfferResult.getTotalPriceOfBundle();
+                itemAmount -= specialOfferResult.getAmountOfItemsAppliedTo();
             }
         }
 
