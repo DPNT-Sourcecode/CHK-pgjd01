@@ -25,14 +25,13 @@ class TotalPriceCalculatorTest {
     void setUp() {
         specialOfferApplier = mock(SpecialOfferApplier.class);
         crossProductOfferApplier = mock(CrossProductOfferApplier.class);
+        when(crossProductOfferApplier.apply(anyList(), any(SpecialOffer.class))).thenReturn(SpecialOfferResult.builder()
+                .itemsOfferWasAppliedTo(List.of()).build());
         totalPriceCalculator = new TotalPriceCalculator(specialOfferApplier, crossProductOfferApplier);
     }
 
     @Test
     public void shouldCalculateTotalPrice() {
-        when(crossProductOfferApplier.apply(anyList(), any(SpecialOffer.class))).thenReturn(SpecialOfferResult.builder()
-                .itemsOfferWasAppliedTo(List.of()).build());
-
         int totalPrice = totalPriceCalculator.computeTotalPrice(Basket.fromInput("K"));
 
         assertEquals(70, totalPrice);
@@ -41,14 +40,14 @@ class TotalPriceCalculatorTest {
     @Test
     public void shouldCalculateTotalPriceWithApplicableSelfProductPromotions() {
         SpecialOfferResult resultFromApply = SpecialOfferResult.builder()
-                .totalPriceOfBundle(100)
-                .itemsOfferWasAppliedTo(List.of(ItemCount.of(ItemType.A, 3)))
+                .totalPriceOfBundle(120)
+                .itemsOfferWasAppliedTo(List.of(ItemCount.of(ItemType.K, 2)))
                 .build();
-        when(specialOfferApplier.apply(eq(ItemType.A), eq(4), any(SpecialOffer.class), anyList())).thenReturn(resultFromApply);
+        when(specialOfferApplier.apply(eq(ItemType.K), eq(3), any(SpecialOffer.class), anyList())).thenReturn(resultFromApply);
 
-        int totalPrice = totalPriceCalculator.computeTotalPrice(Basket.fromInput("AAAA"));
+        int totalPrice = totalPriceCalculator.computeTotalPrice(Basket.fromInput("KKK"));
 
-        assertEquals(150, totalPrice);
+        assertEquals(220, totalPrice);
     }
 
     @Test
@@ -83,4 +82,5 @@ class TotalPriceCalculatorTest {
         assertEquals(45, totalPrice, "Bundle of 5 products should cost 45");
     }
 }
+
 
