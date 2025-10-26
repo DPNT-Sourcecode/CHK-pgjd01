@@ -11,7 +11,7 @@ public class SpecialOffer {
     private final SpecialOfferPrice specialOfferPrice;
     private final int discountToApply;
     private final ItemType itemTypeApplicableForDiscount;
-    private final int pricePerDiscountedItem;
+    private final boolean isMultiProductPromotion;
 
     public static SpecialOffer of(ItemType itemType, int count, int totalPrice) {
         ItemCount itemCount = ItemCount.of(itemType, count);
@@ -30,8 +30,9 @@ public class SpecialOffer {
         this.specialOfferPrice = specialOfferPrice;
         this.discountToApply = specialOfferPrice.getItemCount().computeBasePrice() - specialOfferPrice.getPrice();
         this.itemTypeApplicableForDiscount = specialOfferPrice.getItemCount().getType();
-        this.pricePerDiscountedItem = specialOfferPrice.getPrice() / specialOfferPrice.getItemCount().getCount();
+        this.isMultiProductPromotion = itemTypeApplicableForDiscount != target.getType();
     }
 
 }
+
 
