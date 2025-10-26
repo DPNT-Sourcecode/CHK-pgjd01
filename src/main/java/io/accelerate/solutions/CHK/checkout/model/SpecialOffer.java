@@ -13,8 +13,9 @@ public class SpecialOffer {
     private final int targetAmount;
     private final SpecialOfferPrice specialOfferPrice;
     private final int discountToApply;
-    private final ItemType itemTypeApplicableForDiscount;
+    private final Set<ItemType> itemTypesApplicableForDiscount;
     private final boolean isMultiProductPromotion;
+    private final boolean isCrossProductPromotion;
 
     public static SpecialOffer of(ItemType itemType, int count, int totalPrice) {
         ItemCount itemCount = ItemCount.of(itemType, count);
@@ -30,16 +31,17 @@ public class SpecialOffer {
     }
 
     public static SpecialOffer ofCrossProduct(Any anyItems, int count, int totalPrice) {
-        return null;
+        return new SpecialOffer(anyItems.getItems(), count, SpecialOfferPrice.of(anyItems, count, totalPrice));
     }
 
     private SpecialOffer(Set<ItemType> targetTypes, int targetAmount, SpecialOfferPrice specialOfferPrice) {
         this.targetTypes = targetTypes;
         this.targetAmount = targetAmount;
         this.specialOfferPrice = specialOfferPrice;
-        this.discountToApply = specialOfferPrice.getItemCount().computeBasePrice() - specialOfferPrice.getPrice();
-        this.itemTypeApplicableForDiscount = specialOfferPrice.getItemCount().getType();
-        this.isMultiProductPromotion = targetTypes.size() != 1 || !targetTypes.contains(specialOfferPrice.getItemCount().getType());
+        this.discountToApply = specialOfferPrice.computeDiscountToApply();
+        this.itemTypesApplicableForDiscount = specialOfferPrice.getDiscountedTypes();
+        this.isMultiProductPromotion = targetTypes.size() == 1 && !targetTypes.equals(specialOfferPrice.getDiscountedTypes());
+        this.isCrossProductPromotion = targetTypes.size() != 1;
     }
-
 }
+

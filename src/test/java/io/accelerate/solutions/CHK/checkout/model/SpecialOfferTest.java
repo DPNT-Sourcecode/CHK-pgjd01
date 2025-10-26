@@ -15,7 +15,7 @@ class SpecialOfferTest {
         assertEquals(1, specialOffer.getTargetTypes().size());
         assertTrue(specialOffer.getTargetTypes().contains(ItemType.B));
         assertEquals(specialOffer.getTargetAmount(), 3);
-        assertEquals(specialOffer.getItemTypeApplicableForDiscount(), ItemType.B);
+        assertEquals(specialOffer.getItemTypesApplicableForDiscount(), ItemType.B);
         assertFalse(specialOffer.isMultiProductPromotion());
     }
 
@@ -26,7 +26,7 @@ class SpecialOfferTest {
         assertEquals(1, specialOffer.getTargetTypes().size());
         assertTrue(specialOffer.getTargetTypes().contains(ItemType.C));
         assertEquals(specialOffer.getTargetAmount(), 4);
-        assertEquals(specialOffer.getItemTypeApplicableForDiscount(), ItemType.A);
+        assertEquals(specialOffer.getItemTypesApplicableForDiscount(), ItemType.A);
         assertTrue(specialOffer.isMultiProductPromotion());
     }
 

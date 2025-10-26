@@ -71,6 +71,7 @@ public class TotalPriceCalculator {
     }
 
     private static boolean offerIsApplicableForThisItem(ItemCount itemCount, SpecialOffer offer) {
-        return itemCount.getType() == offer.getItemTypeApplicableForDiscount();
+        return itemCount.getType() == offer.getItemTypesApplicableForDiscount();
     }
 }
+
