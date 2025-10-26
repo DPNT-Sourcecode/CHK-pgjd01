@@ -1,15 +1,17 @@
 package io.accelerate.solutions.CHK.checkout;
 
 import io.accelerate.solutions.CHK.basket.model.ItemCount;
+import io.accelerate.solutions.CHK.basket.model.ItemType;
 import io.accelerate.solutions.CHK.checkout.model.SpecialOffer;
 import io.accelerate.solutions.CHK.checkout.model.SpecialOfferResult;
 
 import java.util.List;
+import java.util.Optional;
 import java.util.Set;
 
 public class SpecialOfferApplier {
 
-    public SpecialOfferResult apply(int itemAmount, SpecialOffer offer, List<ItemCount> items) {
+    public SpecialOfferResult apply(ItemType itemType, int itemAmount, SpecialOffer offer, List<ItemCount> items) {
         int amountOfItemsWithOfferApplied;
         int totalPriceOfAppliedOffer;
         int numberOfBundles = itemAmount / offer.getSpecialOfferPrice().getCount();
@@ -26,10 +28,11 @@ public class SpecialOfferApplier {
         amountOfItemsWithOfferApplied = numberOfBundles * offer.getSpecialOfferPrice().getCount();
 
         return SpecialOfferResult.builder()
-                .itemsOfferWasAppliedTo(Set.of(ItemCount.of(offer.getamountOfItemsWithOfferApplied)))
+                .itemsOfferWasAppliedTo(List.of(ItemCount.of(itemType, amountOfItemsWithOfferApplied)))
                 .totalPriceOfBundle(totalPriceOfAppliedOffer)
                 .build();
     }
 }
+
 
 

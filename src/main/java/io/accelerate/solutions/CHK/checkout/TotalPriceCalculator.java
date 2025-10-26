@@ -52,16 +52,17 @@ public class TotalPriceCalculator {
         int totalPrice = 0;
         List<ItemCount> itemsToProcess = new ArrayList<>(items);
 
+        ItemType typeBeingProcessed = itemCount.getType();
         for (SpecialOffer offer : SPECIAL_OFFERS) {
             if (offerIsApplicableForThisItem(itemCount, offer)
             && enoughItemsInBasketToApplyOffer(offer, itemAmount)) {
-                SpecialOfferResult specialOfferResult = specialOfferApplier.apply(itemAmount, offer, itemsToProcess);
+                SpecialOfferResult specialOfferResult = specialOfferApplier.apply(typeBeingProcessed, itemAmount, offer, itemsToProcess);
                 totalPrice += specialOfferResult.getTotalPriceOfBundle();
-                itemAmount -= specialOfferResult.getAmountAppliedTo(itemCount.getType());
+                itemAmount -= specialOfferResult.getAmountAppliedTo(typeBeingProcessed);
             }
         }
 
-        totalPrice += itemAmount * itemCount.getType().getBasePrice();
+        totalPrice += itemAmount * typeBeingProcessed.getBasePrice();
 
         return totalPrice;
     }
@@ -82,6 +83,7 @@ public class TotalPriceCalculator {
         }
     }
 }
+
 
 
 
