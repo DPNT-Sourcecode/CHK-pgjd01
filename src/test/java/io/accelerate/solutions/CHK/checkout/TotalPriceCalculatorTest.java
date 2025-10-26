@@ -1,6 +1,8 @@
 package io.accelerate.solutions.CHK.checkout;
 
-import io.accelerate.solutions.CHK.basket.Basket;
+import io.accelerate.solutions.CHK.basket.model.Basket;
+import io.accelerate.solutions.CHK.checkout.model.SpecialOffer;
+import io.accelerate.solutions.CHK.checkout.model.SpecialOfferResult;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 

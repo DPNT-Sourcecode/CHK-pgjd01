@@ -1,6 +1,6 @@
 package io.accelerate.solutions.CHK;
 
-import io.accelerate.solutions.CHK.basket.Basket;
+import io.accelerate.solutions.CHK.basket.model.Basket;
 import io.accelerate.solutions.CHK.checkout.SpecialOfferApplier;
 import io.accelerate.solutions.CHK.checkout.TotalPriceCalculator;
 import lombok.AccessLevel;
@@ -21,3 +21,4 @@ public class CheckoutSolution {
         return calculator.computeTotalPrice(basket);
     }
 }
+

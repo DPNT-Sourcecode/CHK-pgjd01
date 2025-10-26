@@ -1,4 +1,4 @@
-package io.accelerate.solutions.CHK.checkout;
+package io.accelerate.solutions.CHK.checkout.model;
 
 import lombok.Builder;
 import lombok.Getter;

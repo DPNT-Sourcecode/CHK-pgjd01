@@ -1,4 +1,4 @@
-package io.accelerate.solutions.CHK.basket;
+package io.accelerate.solutions.CHK.basket.model;
 
 import lombok.Builder;
 import lombok.EqualsAndHashCode;

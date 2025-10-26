@@ -1,7 +1,7 @@
-package io.accelerate.solutions.CHK.checkout;
+package io.accelerate.solutions.CHK.checkout.model;
 
-import io.accelerate.solutions.CHK.basket.ItemCount;
-import io.accelerate.solutions.CHK.basket.ItemType;
+import io.accelerate.solutions.CHK.basket.model.ItemCount;
+import io.accelerate.solutions.CHK.basket.model.ItemType;
 import lombok.Getter;
 
 @Getter

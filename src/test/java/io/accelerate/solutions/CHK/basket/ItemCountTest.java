@@ -1,5 +1,7 @@
 package io.accelerate.solutions.CHK.basket;
 
+import io.accelerate.solutions.CHK.basket.model.ItemCount;
+import io.accelerate.solutions.CHK.basket.model.ItemType;
 import org.junit.jupiter.api.Test;
 
 import java.util.AbstractMap;

@@ -1,8 +1,11 @@
 package io.accelerate.solutions.CHK.checkout;
 
-import io.accelerate.solutions.CHK.basket.Basket;
-import io.accelerate.solutions.CHK.basket.ItemCount;
-import io.accelerate.solutions.CHK.basket.ItemType;
+import io.accelerate.solutions.CHK.basket.model.Basket;
+import io.accelerate.solutions.CHK.basket.model.ItemCount;
+import io.accelerate.solutions.CHK.basket.model.ItemType;
+import io.accelerate.solutions.CHK.checkout.model.SpecialOffer;
+import io.accelerate.solutions.CHK.checkout.model.SpecialOfferPrice;
+import io.accelerate.solutions.CHK.checkout.model.SpecialOfferResult;
 import lombok.AllArgsConstructor;
 
 import java.util.ArrayList;
@@ -60,3 +63,4 @@ public class TotalPriceCalculator {
         return itemCount.getType() == offer.getItemTypeApplicableForDiscount();
     }
 }
+
