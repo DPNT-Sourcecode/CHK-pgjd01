@@ -12,6 +12,9 @@ class SpecialOfferTest {
         SpecialOffer specialOffer = SpecialOffer.of(ItemType.B, 3, 40);
 
         assertEquals(specialOffer.getTarget().getType(), ItemType.B);
+        assertEquals(specialOffer.getTarget().getCount(), 3);
+        assertEquals(specialOffer.getItemTypeApplicableForDiscount(), ItemType.B);
+        assertFalse(specialOffer.isMultiProductPromotion());
     }
 
     @Test
