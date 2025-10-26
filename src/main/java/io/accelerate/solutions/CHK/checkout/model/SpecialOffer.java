@@ -25,6 +25,10 @@ public class SpecialOffer {
         return new SpecialOffer(ItemCount.of(itemType, count), specialOfferPrice);
     }
 
+    public static SpecialOffer ofCrossProduct(Any anyItems, int count, SpecialOfferPrice specialOfferPrice) {
+        return null;
+    }
+
     private SpecialOffer(ItemCount target, SpecialOfferPrice specialOfferPrice) {
         this.target = target;
         this.specialOfferPrice = specialOfferPrice;
