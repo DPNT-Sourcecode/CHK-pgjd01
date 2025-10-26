@@ -9,7 +9,7 @@ import java.util.List;
 
 public class SpecialOfferApplier {
 
-    public SpecialOfferResult apply(ItemType itemType, int itemAmount, SpecialOffer offer, List<ItemCount> items) {
+    public SpecialOfferResult apply(int itemAmount, SpecialOffer offer, List<ItemCount> items) {
         int amountOfItemsWithOfferApplied;
         int totalPriceOfAppliedOffer;
         int numberOfBundles = itemAmount / offer.getSpecialOfferPrice().getCount();
@@ -26,8 +26,9 @@ public class SpecialOfferApplier {
         amountOfItemsWithOfferApplied = numberOfBundles * offer.getSpecialOfferPrice().getCount();
 
         return SpecialOfferResult.builder()
-                .itemsOfferWasAppliedTo(List.of(ItemCount.of(itemType, amountOfItemsWithOfferApplied)))
+                .itemsOfferWasAppliedTo(List.of(ItemCount.of(, amountOfItemsWithOfferApplied)))
                 .totalPriceOfBundle(totalPriceOfAppliedOffer)
                 .build();
     }
 }
+
