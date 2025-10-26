@@ -24,4 +24,3 @@ public class CheckoutSolution {
         return calculator.computeTotalPrice(basket);
     }
 }
-

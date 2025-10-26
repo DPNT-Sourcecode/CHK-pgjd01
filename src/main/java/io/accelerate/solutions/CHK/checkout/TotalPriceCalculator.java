@@ -93,4 +93,3 @@ public class TotalPriceCalculator {
         return offer.getItemTypesApplicableForDiscount().contains(itemCount.getType());
     }
 }
-
