@@ -18,4 +18,12 @@ public class SpecialOfferResult {
                 .findFirst()
                 .stream().mapToInt(ItemCount::getCount).findAny().orElse(0);
     }
+
+    public int getTotalDiscount() {
+        int originalPriceOfBundle = itemsOfferWasAppliedTo.stream()
+                .mapToInt(ItemCount::computeBasePrice)
+                .sum();
+        return originalPriceOfBundle - totalPriceOfBundle;
+    }
 }
+

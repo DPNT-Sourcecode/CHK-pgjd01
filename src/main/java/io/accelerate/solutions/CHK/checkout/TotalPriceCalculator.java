@@ -19,6 +19,7 @@ import static io.accelerate.solutions.CHK.basket.model.ItemType.*;
 public class TotalPriceCalculator {
 
     private final SpecialOfferApplier specialOfferApplier;
+    private final CrossProductOfferApplier crossProductOfferApplier;
 
     private static final List<SpecialOffer> SPECIAL_OFFERS = new ArrayList<>(List.of(
         SpecialOffer.of(ItemType.A, 3, 130),
@@ -39,6 +40,10 @@ public class TotalPriceCalculator {
         SpecialOffer.ofCrossProduct(Any.of(S, T, X, Y, Z), 3, 45)
     ));
 
+    private static final List<SpecialOffer> CROSS_PRODUCT_OFFERS = List.of(
+            SpecialOffer.ofCrossProduct(Any.of(S, T, X, Y, Z), 3, 45)
+    );
+
     static {
         SPECIAL_OFFERS.sort(Comparator.comparing(SpecialOffer::getDiscountToApply).reversed());
     }
@@ -46,9 +51,17 @@ public class TotalPriceCalculator {
     public int computeTotalPrice(Basket basket) {
         List<ItemCount> items = basket.getItemCounts();
 
-        return items.stream()
+        int totalPrice = items.stream()
                 .mapToInt(item -> computeItemPrice(item, items))
                 .sum();
+
+        for (SpecialOffer crossProductOffer : CROSS_PRODUCT_OFFERS) {
+            SpecialOfferResult specialOfferResult = crossProductOfferApplier.apply(items, crossProductOffer);
+            totalPrice -= specialOfferResult.getTotalDiscount();
+
+            //need to remove the items used from the list
+        }
+        return totalPrice;
     }
 
     private int computeItemPrice(ItemCount itemCount, List<ItemCount> items) {
@@ -59,7 +72,7 @@ public class TotalPriceCalculator {
         ItemType typeBeingProcessed = itemCount.getType();
         for (SpecialOffer offer : SPECIAL_OFFERS) {
             if (offerIsApplicableForThisItem(itemCount, offer)
-            && enoughItemsInBasketToApplyOffer(offer, itemAmount, itemsToProcess)) {
+            && enoughItemsInBasketToApplyOffer(offer, itemAmount)) {
                 SpecialOfferResult specialOfferResult = specialOfferApplier.apply(typeBeingProcessed, itemAmount, offer, itemsToProcess);
                 totalPrice += specialOfferResult.getTotalPriceOfBundle();
                 itemAmount -= specialOfferResult.getAmountAppliedTo(typeBeingProcessed);
@@ -71,22 +84,13 @@ public class TotalPriceCalculator {
         return totalPrice;
     }
 
-    private static boolean enoughItemsInBasketToApplyOffer(SpecialOffer offer, int itemAmount, List<ItemCount> itemsToProcess) {
-        if (offer.isCrossProductPromotion()) {
-            return itemsToProcess.stream()
-                    .map(ItemCount::getType)
-                    .filter(offer.getTargetTypes()::contains)
-                    .count() > offer.getTargetAmount();
-        } else {
-            return itemAmount >= offer.getSpecialOfferPrice().getCount();
-        }
+    private static boolean enoughItemsInBasketToApplyOffer(SpecialOffer offer, int itemAmount) {
+        return itemAmount >= offer.getSpecialOfferPrice().getCount();
+
     }
 
     private static boolean offerIsApplicableForThisItem(ItemCount itemCount, SpecialOffer offer) {
-        if (offer.isCrossProductPromotion()) {
-            return false;
-        } else {
-            return offer.getItemTypesApplicableForDiscount().contains(itemCount.getType());
-        }
+        return offer.getItemTypesApplicableForDiscount().contains(itemCount.getType());
     }
 }
+

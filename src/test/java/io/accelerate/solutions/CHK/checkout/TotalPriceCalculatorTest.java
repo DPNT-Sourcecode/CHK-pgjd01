@@ -19,11 +19,12 @@ class TotalPriceCalculatorTest {
 
     private TotalPriceCalculator totalPriceCalculator;
     private SpecialOfferApplier specialOfferApplier;
+    private CrossProductOfferApplier crossProductOfferApplier;
 
     @BeforeEach
     void setUp() {
         specialOfferApplier = mock(SpecialOfferApplier.class);
-        totalPriceCalculator = new TotalPriceCalculator(specialOfferApplier);
+        totalPriceCalculator = new TotalPriceCalculator(specialOfferApplier, crossProductOfferApplier);
     }
 
     @Test
@@ -71,7 +72,7 @@ class TotalPriceCalculatorTest {
                         ItemCount.of(ItemType.Z, 1)
                 ))
                 .build();
-        when(specialOfferApplier.apply(eq(ItemType.X), eq(1), any(SpecialOffer.class), anyList())).thenReturn(resultFromApply);
+        when(crossProductOfferApplier.apply(anyList(), any(SpecialOffer.class))).thenReturn(resultFromApply);
 
         int totalPrice = totalPriceCalculator.computeTotalPrice(Basket.fromInput("STXYZ"));
 

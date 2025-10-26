@@ -46,18 +46,4 @@ class SpecialOfferApplierTest {
         assertEquals(4, specialOfferResult.getAmountAppliedTo(ItemType.E));
         assertEquals(20, specialOfferResult.getTotalPriceOfBundle());
     }
-
-    @Test
-    public void shouldApplyCrossProductOffer() {
-        SpecialOffer specialOffer = SpecialOffer.ofCrossProduct(Any.of(B, C, D), 4, 10);
-
-        List<ItemCount> itemsToProcess = List.of(ItemCount.of(B, 2), ItemCount.of(C, 2));
-        SpecialOfferResult specialOfferResult = specialOfferApplier.apply(ItemType.B, 5, specialOffer, itemsToProcess);
-
-        assertNotNull(specialOfferResult);
-        assertEquals(2, specialOfferResult.getItemsOfferWasAppliedTo().size());
-        assertTrue(specialOfferResult.getItemsOfferWasAppliedTo().contains(ItemCount.of(B, 2)));
-        assertTrue(specialOfferResult.getItemsOfferWasAppliedTo().contains(ItemCount.of(C, 2)));
-        assertEquals(10, specialOfferResult.getTotalPriceOfBundle());
-    }
 }
