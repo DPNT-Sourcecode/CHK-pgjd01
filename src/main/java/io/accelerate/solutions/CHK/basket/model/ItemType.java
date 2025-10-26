@@ -38,4 +38,3 @@ public enum ItemType {
 
     private final int basePrice;
 }
-
