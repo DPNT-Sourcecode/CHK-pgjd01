@@ -39,7 +39,7 @@ class TotalPriceCalculatorTest {
                 .totalPriceOfBundle(100)
                 .itemsOfferWasAppliedTo(List.of(ItemCount.of(ItemType.A, 3)))
                 .build();
-        when(specialOfferApplier.apply(eq(4), any(SpecialOffer.class), anyList())).thenReturn(resultFromApply);
+        when(specialOfferApplier.apply(eq(ItemType.A), eq(4), any(SpecialOffer.class), anyList())).thenReturn(resultFromApply);
 
         int totalPrice = totalPriceCalculator.computeTotalPrice(Basket.fromInput("AAAA"));
 
@@ -52,7 +52,7 @@ class TotalPriceCalculatorTest {
                 .totalPriceOfBundle(0)
                 .itemsOfferWasAppliedTo(List.of(ItemCount.of(ItemType.B, 2)))
                 .build();
-        when(specialOfferApplier.apply(eq(2), any(SpecialOffer.class), anyList())).thenReturn(resultFromApply);
+        when(specialOfferApplier.apply(eq(ItemType.B), eq(2), any(SpecialOffer.class), anyList())).thenReturn(resultFromApply);
 
         int totalPrice = totalPriceCalculator.computeTotalPrice(Basket.fromInput("BBEE"));
 
@@ -65,10 +65,11 @@ class TotalPriceCalculatorTest {
                 .totalPriceOfBundle(0)
                 .itemsOfferWasAppliedTo(List.of(ItemCount.of(ItemType.B, 2)))
                 .build();
-        when(specialOfferApplier.apply(eq(2), any(SpecialOffer.class), anyList())).thenReturn(resultFromApply);
+        when(specialOfferApplier.apply(eq(ItemType.B), eq(2), any(SpecialOffer.class), anyList())).thenReturn(resultFromApply);
 
         int totalPrice = totalPriceCalculator.computeTotalPrice(Basket.fromInput("BBEE"));
 
         assertEquals(80, totalPrice, "B items should be free");
     }
 }
+
