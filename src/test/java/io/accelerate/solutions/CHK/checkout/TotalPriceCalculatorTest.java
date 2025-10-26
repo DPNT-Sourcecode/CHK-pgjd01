@@ -30,9 +30,9 @@ class TotalPriceCalculatorTest {
 
     @Test
     public void shouldCalculateTotalPrice() {
-        int totalPrice = totalPriceCalculator.computeTotalPrice(Basket.fromInput("A"));
+        int totalPrice = totalPriceCalculator.computeTotalPrice(Basket.fromInput("K"));
 
-        assertEquals(50, totalPrice);
+        assertEquals(70, totalPrice);
     }
 
     @Test
