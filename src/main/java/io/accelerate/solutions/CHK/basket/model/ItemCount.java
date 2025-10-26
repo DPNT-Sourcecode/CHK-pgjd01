@@ -32,7 +32,12 @@ public class ItemCount {
         return new ItemCount(itemType, count);
     }
 
+    public ItemCount subtractUnits(int units) {
+        return ItemCount.of(type, count - units);
+    }
+
     public int computeBasePrice() {
         return type.getBasePrice() * count;
     }
 }
+
