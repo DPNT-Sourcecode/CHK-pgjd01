@@ -5,14 +5,17 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;
+import static org.mockito.Mockito.mock;
 
 class TotalPriceCalculatorTest {
 
     private TotalPriceCalculator totalPriceCalculator;
+    private SpecialOfferApplier specialOfferApplier;
 
     @BeforeEach
     void setUp() {
-        totalPriceCalculator = new TotalPriceCalculator();
+        specialOfferApplier = mock(SpecialOfferApplier.class);
+        totalPriceCalculator = new TotalPriceCalculator(specialOfferApplier);
     }
 
     @Test

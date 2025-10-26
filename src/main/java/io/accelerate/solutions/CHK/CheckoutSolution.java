@@ -12,8 +12,7 @@ public class CheckoutSolution {
     private final TotalPriceCalculator calculator;
 
     public CheckoutSolution() {
-
-        this.calculator = new TotalPriceCalculator();
+        this.calculator = new TotalPriceCalculator(new SpecialOfferApplier());
     }
 
     public Integer checkout(String skus) {
@@ -22,4 +21,5 @@ public class CheckoutSolution {
         return calculator.computeTotalPrice(basket);
     }
 }
+
 
