@@ -12,8 +12,9 @@ class SpecialOfferTest {
     void testOf() {
         SpecialOffer specialOffer = SpecialOffer.of(ItemType.B, 3, 40);
 
-        assertEquals(specialOffer.getTarget().getType(), ItemType.B);
-        assertEquals(specialOffer.getTarget().getCount(), 3);
+        assertEquals(1, specialOffer.getTargetTypes().size());
+        assertTrue(specialOffer.getTargetTypes().contains(ItemType.B));
+        assertEquals(specialOffer.getTargetAmount(), 3);
         assertEquals(specialOffer.getItemTypeApplicableForDiscount(), ItemType.B);
         assertFalse(specialOffer.isMultiProductPromotion());
     }
@@ -22,8 +23,9 @@ class SpecialOfferTest {
     void ofMultiProduct() {
         SpecialOffer specialOffer = SpecialOffer.ofMultiProduct(ItemType.C, 4, SpecialOfferPrice.of(ItemCount.of(ItemType.A, 3), 20));
 
-        assertEquals(specialOffer.getTarget().getType(), ItemType.C);
-        assertEquals(specialOffer.getTarget().getCount(), 4);
+        assertEquals(1, specialOffer.getTargetTypes().size());
+        assertTrue(specialOffer.getTargetTypes().contains(ItemType.C));
+        assertEquals(specialOffer.getTargetAmount(), 4);
         assertEquals(specialOffer.getItemTypeApplicableForDiscount(), ItemType.A);
         assertTrue(specialOffer.isMultiProductPromotion());
     }
@@ -35,3 +37,4 @@ class SpecialOfferTest {
         assertNotNull(specialOffer);
     }
 }
+

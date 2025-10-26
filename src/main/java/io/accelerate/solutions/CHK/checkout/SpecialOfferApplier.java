@@ -15,9 +15,9 @@ public class SpecialOfferApplier {
 
         if (offer.isMultiProductPromotion()) {
             int amountOfOtherProductNeededForOffer = items.stream()
-                    .filter(item -> item.getType() == offer.getTarget().getType())
+                    .filter(item ->  offer.getTargetTypes().contains(item.getType()))
                     .findFirst().map(ItemCount::getCount).orElse(0);
-            int numberOfAllowedBundles = amountOfOtherProductNeededForOffer / offer.getTarget().getCount();
+            int numberOfAllowedBundles = amountOfOtherProductNeededForOffer / offer.getTargetAmount();
             numberOfBundles = Math.min(numberOfAllowedBundles, numberOfBundles);
         }
 
@@ -30,3 +30,4 @@ public class SpecialOfferApplier {
                 .build();
     }
 }
+
