@@ -30,7 +30,7 @@ public class TotalPriceCalculator {
         SpecialOffer.of(ItemType.P, 5, 200),
         SpecialOffer.of(ItemType.Q, 3, 80),
         SpecialOffer.ofMultiProduct(ItemType.R, 3, SpecialOfferPrice.of(ItemType.Q, 1, 0)),
-        SpecialOffer.of(ItemType.U, 3, 80),
+        SpecialOffer.of(ItemType.U, 4, 120),
         SpecialOffer.of(ItemType.V, 2, 90),
         SpecialOffer.of(ItemType.V, 3, 130)
     ));
@@ -74,4 +74,5 @@ public class TotalPriceCalculator {
         return itemCount.getType() == offer.getItemTypeApplicableForDiscount();
     }
 }
+
 
